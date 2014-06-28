@@ -1,0 +1,14 @@
+{
+  "name": "asteroids-controller",
+  "version": "0.0.0",
+  "description": "A controller for the fighter in the asteroids game",
+  "main": "lib/controller.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "asteroids"
+  ],
+  "author": "Daan van Berkel",
+  "license": "MIT"
+}
