@@ -69,5 +69,16 @@ describe('Controller', function() {
 
 			expect(flagged).to.be.ok;
 		});
+
+		it('should flag not \'running\' code',function(){
+			var flagged = false;
+			var controller = new Controller();
+			controller.addListener('runtime error', function(){ flagged = true });
+			controller.update('foo.bar;');
+
+			controller.control(fighter);
+
+			expect(flagged).to.be.ok;
+		});
 	});
 });
