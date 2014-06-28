@@ -59,5 +59,15 @@ describe('Controller', function() {
 				expect(fighter.speed()).to.equal(testCase.speed);
 			});
 		});
+
+		it('should flag not \'compiling\' code',function(){
+			var flagged = false;
+			var controller = new Controller();
+			controller.addListener('compile error', function(){ flagged = true });
+
+			controller.update('{');
+
+			expect(flagged).to.be.ok;
+		});
 	});
 });
