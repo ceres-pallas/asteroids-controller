@@ -12,6 +12,10 @@ describe('Controller', function() {
         expect(Controller).to.be.a('function');
     });
 
+    it('should be an instance of listener', function() {
+        expect(new Controller()).to.be.a.instanceof(require('asteroids-listener'));
+    });
+
 	describe('control', function(){
 		var fighter;
 
