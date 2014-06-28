@@ -10,5 +10,9 @@
     "asteroids"
   ],
   "author": "Daan van Berkel",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "~1.8.1",
+    "mocha": "~1.17.0"
+  }
 }
