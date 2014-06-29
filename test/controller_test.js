@@ -60,6 +60,17 @@ describe('Controller', function() {
 			});
 		});
 
+		it('should be able to fire', function(){
+			var called = false;
+			fighter.addListener('fire', function(){ called = true; });
+			var controller = new Controller();
+			controller.update('fire();');
+
+			controller.control(fighter);
+
+			expect(called).to.be.ok;
+		});
+
 		it('should flag not \'compiling\' code',function(){
 			var flagged = false;
 			var controller = new Controller();
