@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 
 var Controller = require('../lib/controller.js');
+var Logger = require('../lib/logger.js');
 var Fighter = require('asteroids-fighter');
 
 describe('Controller', function() {
@@ -18,6 +19,7 @@ describe('Controller', function() {
 
 	describe('control', function(){
 		var fighter;
+		var logger;
 
 		beforeEach(function(){
 			fighter = new Fighter(function(fighter){
@@ -25,6 +27,10 @@ describe('Controller', function() {
 				fighter.heading(0);
 				fighter.speed(0);
 			}, { speedIncrement: 1, rotation: Math.PI/12 });
+		});
+
+		beforeEach(function(){
+			logger = new Logger();
 		});
 
 		it('should do nothing per default', function(){
@@ -112,11 +118,20 @@ describe('Controller', function() {
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
 
+		it('should have a \'console\' parameter', function(){
+			var controller = new Controller();
+			controller.update('console.log(\'Hello World\')');
+
+			controller.control(fighter, logger);
+
+			expect(logger.lines()).to.deep.equal([['Hello World']]);
+		});
+
 		it('should have a \'context\' parameter', function(){
 			var controller = new Controller();
 			controller.update('if(context) { turnLeft(); } else { turnRight(); }');
 
-			controller.control(fighter, {});
+			controller.control(fighter, logger, {});
 
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
@@ -125,7 +140,7 @@ describe('Controller', function() {
 			var controller = new Controller();
 			controller.update('if(time === 1) { turnLeft(); } else { turnRight(); }');
 
-			controller.control(fighter, {}, 1);
+			controller.control(fighter, logger, {}, 1);
 
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
@@ -134,7 +149,7 @@ describe('Controller', function() {
 			var controller = new Controller();
 			controller.update('if(state) { turnLeft(); } else { turnRight(); }');
 
-			controller.control(fighter, {}, 0, {});
+			controller.control(fighter, logger, {}, 0, {});
 
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
@@ -143,7 +158,7 @@ describe('Controller', function() {
 			var controller = new Controller();
 			controller.update('if(asteroids.length > 0) { turnLeft(); } else { turnRight(); }');
 
-			controller.control(fighter, {}, 0, {}, [1]);
+			controller.control(fighter, logger, {}, 0, {}, [1]);
 
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
@@ -154,7 +169,7 @@ describe('Controller', function() {
 				var controller = new Controller();
 				controller.update('context.called = true;');
 
-				controller.control(fighter, context);
+				controller.control(fighter, logger, context);
 
 				expect(context.called).to.be.ok;
 			});
