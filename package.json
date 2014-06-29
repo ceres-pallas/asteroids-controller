@@ -16,7 +16,7 @@
     "mocha": "~1.17.0"
   },
   "dependencies": {
-    "asteroids-fighter": "^0.6.0",
+    "asteroids-fighter": "^0.7.0",
     "asteroids-listener": "^0.1.0"
   }
 }
