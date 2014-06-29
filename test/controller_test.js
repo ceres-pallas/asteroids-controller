@@ -112,11 +112,20 @@ describe('Controller', function() {
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
 
+		it('should have a \'context\' parameter', function(){
+			var controller = new Controller();
+			controller.update('if(context) { turnLeft(); } else { turnRight(); }');
+
+			controller.control(fighter, {});
+
+			expect(fighter.heading()).to.equal(Math.PI/12);
+		});
+
 		it('should have a \'time\' parameter', function(){
 			var controller = new Controller();
 			controller.update('if(time === 1) { turnLeft(); } else { turnRight(); }');
 
-			controller.control(fighter, 1);
+			controller.control(fighter, {}, 1);
 
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
@@ -125,7 +134,7 @@ describe('Controller', function() {
 			var controller = new Controller();
 			controller.update('if(state) { turnLeft(); } else { turnRight(); }');
 
-			controller.control(fighter, 0, {});
+			controller.control(fighter, {}, 0, {});
 
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
@@ -134,7 +143,7 @@ describe('Controller', function() {
 			var controller = new Controller();
 			controller.update('if(asteroids.length > 0) { turnLeft(); } else { turnRight(); }');
 
-			controller.control(fighter, 0, {}, [1]);
+			controller.control(fighter, {}, 0, {}, [1]);
 
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
