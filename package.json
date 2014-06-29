@@ -1,16 +1,23 @@
 {
   "name": "asteroids-controller",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A controller for the fighter in the asteroids game",
   "main": "lib/controller.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ceres-pallas/asteroids-controller.git"
   },
   "keywords": [
     "asteroids"
   ],
   "author": "Daan van Berkel",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ceres-pallas/asteroids-controller/issues"
+  },
   "devDependencies": {
     "chai": "~1.8.1",
     "mocha": "~1.17.0"
