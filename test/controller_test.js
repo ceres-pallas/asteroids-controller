@@ -80,5 +80,15 @@ describe('Controller', function() {
 
 			expect(flagged).to.be.ok;
 		});
+
+		it('should only execute last statement', function(){
+			var controller = new Controller();
+			controller.update('speedUp(); turnLeft();');
+
+			controller.control(fighter);
+
+			expect(fighter.speed()).to.equal(0);
+			expect(fighter.heading()).to.equal(Math.PI/12);
+		});
 	});
 });
