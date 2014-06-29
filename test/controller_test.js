@@ -147,5 +147,17 @@ describe('Controller', function() {
 
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
+
+		describe('context', function(){
+			it('should act as persistence', function(){
+				var context = { called: false };
+				var controller = new Controller();
+				controller.update('context.called = true;');
+
+				controller.control(fighter, context);
+
+				expect(context.called).to.be.ok;
+			});
+		});
 	});
 });
