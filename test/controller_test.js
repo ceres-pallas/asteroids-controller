@@ -90,5 +90,32 @@ describe('Controller', function() {
 			expect(fighter.speed()).to.equal(0);
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
+
+		it('should have a \'time\' parameter', function(){
+			var controller = new Controller();
+			controller.update('if(time === 1) { turnLeft(); } else { turnRight(); }');
+
+			controller.control(fighter, 1);
+
+			expect(fighter.heading()).to.equal(Math.PI/12);
+		});
+
+		it('should have a \'state\' parameter', function(){
+			var controller = new Controller();
+			controller.update('if(state) { turnLeft(); } else { turnRight(); }');
+
+			controller.control(fighter, 0, {});
+
+			expect(fighter.heading()).to.equal(Math.PI/12);
+		});
+
+		it('should have a \'asteroids\' parameter', function(){
+			var controller = new Controller();
+			controller.update('if(asteroids.length > 0) { turnLeft(); } else { turnRight(); }');
+
+			controller.control(fighter, 0, {}, [1]);
+
+			expect(fighter.heading()).to.equal(Math.PI/12);
+		});
 	});
 });
