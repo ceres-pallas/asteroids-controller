@@ -71,6 +71,16 @@ describe('Controller', function() {
 			expect(called).to.be.ok;
 		});
 
+		it('should flag of \'compiling\' code', function(){
+			var flagged = false;
+			var controller = new Controller();
+			controller.addListener('compiled', function(){ flagged = true });
+
+			controller.update('{}');
+
+			expect(flagged).to.be.ok;
+		});
+
 		it('should flag not \'compiling\' code',function(){
 			var flagged = false;
 			var controller = new Controller();
