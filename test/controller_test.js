@@ -163,6 +163,16 @@ describe('Controller', function() {
 			expect(fighter.heading()).to.equal(Math.PI/12);
 		});
 
+
+		it('should have a \'bullets\' parameter', function(){
+			var controller = new Controller();
+			controller.update('if(bullets.length > 0) { turnLeft(); } else { turnRight(); }');
+
+			controller.control(fighter, logger, {}, 0, {}, [1], [2]);
+
+			expect(fighter.heading()).to.equal(Math.PI/12);
+		});
+
 		describe('context', function(){
 			it('should act as persistence', function(){
 				var context = { called: false };
